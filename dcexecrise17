@@ -24,3 +24,75 @@ library(tidyverse)
 
 data(BabyNames)
 ```
+
+## Chapter 17 Exercises
+
+### Problem 17.1
+* Boys’ names ending in a vowel
+```{r}
+NameList <- 
+  BabyNames %>% 
+  group_by(name, sex) %>%
+  summarise(total = sum(count)) %>%
+  arrange(desc(total)) 
+
+BoyName <- NameList %>% 
+  filter(grepl("[aeiou]$", name,ignore.case = TRUE))%>%
+  group_by(sex)
+
+df1 <- BoyName%>%
+  filter(sex=="M")
+
+head(df1, 10)
+```
+
+* Names with a space (like Lee Ann)
+```{r}
+df2 <- NameList %>%
+  filter(grepl(" ", name,ignore.case = TRUE))
+df2
+```
+
+
+
+
+* Names ending with “joe” (like BettyJoe)
+```{r}
+df3 <- NameList %>% 
+  filter(grepl(".joe", name,ignore.case = TRUE))
+df3
+```
+
+### Problem 17.2
+```{r}
+BabyNames %>%
+  group_by(name) %>%
+  extractMatches("c[aeiou]*.tl.[aeiou]*.n", name)
+```
+
+### Problem 17.3
+The entire expression would match a 10-digit phone number with any of the characters dash, space, period in between just once, such as 234-234-2345, 234 345 6789 and things like that. The number part of those strings will be extracted. 
+
+
+### Problem 17.4
+1. the length would be 2        
+2. 61 strings
+
+
+### Problem 17.5
+```{r}
+BibleNames <- 
+  readr::read_csv("https://mdbeckman.github.io/dcSupplement/data/BibleNames.csv")
+head(BibleNames)
+```
+1. 
+```{r}
+BibleNames %>%
+  filter(grepl("bar|dam|lory", name,ignore.case = TRUE))
+```
+
+2. 
+```{r}
+BibleNames %>%
+  filter(grepl("(bar|dam|lory)$", name,ignore.case = TRUE))
+```
