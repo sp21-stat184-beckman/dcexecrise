@@ -96,3 +96,16 @@ BibleNames %>%
 BibleNames %>%
   filter(grepl("(bar|dam|lory)$", name,ignore.case = TRUE))
 ```
+### Problem 17.7
+```{r}
+Total = BibleNames %>%
+  inner_join(BabyNames,select(sex, count, year, CityPopulation),by = c("name" = "name"))
+Total
+```
+```{r}
+Total %>%
+  group_by(name) %>%
+  summarise(total = sum(count)) %>%
+  arrange(desc(total)) 
+```
+So we can see that the ten most popular names.
