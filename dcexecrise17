@@ -1,0 +1,26 @@
+---
+title: "DataComputing Chapters 17" 
+author: "Yaowen Tan"
+date: "2021/4/19"
+output: html_notebook
+---
+
+## Assigned Exercises
+
+- DC Ch 17 Exercises: 17.1, 17.2, 17.3, 17.4, 17.5, 17.7
+
+
+## Front Matter
+ 
+```{r}
+# clean up workspace environment
+rm(list = ls())
+
+# all packages used for the assignment
+library(mosaicData)
+library(dcData)
+library(tidyverse)
+
+
+data(BabyNames)
+```
